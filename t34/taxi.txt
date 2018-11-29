@@ -1,0 +1,7 @@
+NS Halo  70 57
+NS Lux   90 51
+NS VIP   75 56
+NI Halo  15 40
+NI VIP   30 32
+BG Lux  110 96
+BG VIP  120 98
