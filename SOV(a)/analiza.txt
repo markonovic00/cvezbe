@@ -1,0 +1,9 @@
+NS svinjetina 429.990000
+NS junetina 649.990000
+BG junetina 639.990000
+BG svinjetina 389.990000
+NI svinjetina 439.990000
+NI junetina 639.750000
+
+Najpovoljnije junetina 
+ 639.750000 NI junetina
