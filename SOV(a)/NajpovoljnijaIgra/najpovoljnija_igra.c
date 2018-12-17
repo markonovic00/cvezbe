@@ -18,7 +18,9 @@ void initialize(IGRA **head);
 IGRA *novi_el(char *, char * ,char *, double);
 void dodaj_u_listu(IGRA **head,char *, char * ,char *, double);
 void ucitaj(FILE *,IGRA **);
-void ispis(IGRA *);
+void ispis(FILE *,IGRA *);
+void destroy(IGRA **);
+IGRA *get_best(IGRA *, char *, char *);
 FILE *safe_open(char *, char *, int);
 
 
@@ -43,7 +45,17 @@ int main(int argc, char *argv[])
     out=safe_open(argv[4],"w",2);
 
     ucitaj(in,&head);
+    ispis(out,head);
 
+    IGRA *best=get_best(head,argv[2],argv[1]);
+    if(best==NULL){
+        fprintf(out,"Ne postoji ta igra ili zanr...\n");
+    }
+    else{
+        fprintf(out,"Najpovoljnija '%s' \n %s %s %s %lf",best->naziv_zanra,best->naziv_igre,best->naziv_platforme,best->naziv_zanra,best->cena_igre);
+    }
+
+    destroy(&head);
 
     fclose(in);
     fclose(out);
@@ -65,7 +77,7 @@ FILE *safe_open(char *filename, char *mode, int close){
 
 void initialize(IGRA **head){
 
-    *head==NULL;
+    *head=NULL;
 
 }
 
@@ -120,13 +132,53 @@ void ucitaj(FILE *in,IGRA **head){
 
 }
 
-void ispis(IGRA *head){
+void ispis(FILE *out,IGRA *head){
 
     if(head==NULL){
         return;
     }
 
-    printf("%s %s %s %lf\n",head->naziv_igre,head->naziv_zanra,head->naziv_platforme,head->cena_igre);
-    ispis(head->next);
+    fprintf(out,"%s %s %s %.2lf\n",head->naziv_igre,head->naziv_zanra,head->naziv_platforme,head->cena_igre);
+    ispis(out,head->next);
+
+}
+
+void destroy(IGRA **head){
+
+    if(*head==NULL){
+
+        return;
+    }
+
+    destroy(&(*head)->next);
+    free(*head);
+    *head=NULL;
+
+}
+
+IGRA *get_best(IGRA *head, char *zanr, char *platforma){
+
+    if(head==NULL){
+        return NULL;
+    }
+
+    IGRA *best=NULL;
+
+    while (head != NULL){
+    if(strcmp(head->naziv_zanra,zanr)==0 && strcmp(head->naziv_platforme,platforma)==0){
+
+        if(best==NULL){
+            best=head;
+        }
+
+        else if(head->cena_igre < best->cena_igre){
+            best=head;
+        }
+
+    }
+    head=head->next;
+    }
+
+    return best;
 
 }
