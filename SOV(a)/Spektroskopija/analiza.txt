@@ -1,0 +1,8 @@
+C ugljenik 12.00 nemetal
+H vodonik 1.00 nemetal
+O kiseonik 16.00 nemetal
+Ca kalcijum 40.00 metal
+S sumpor 32.00 nemetal
+Pb olovo 207.00 metal
+
+ Najtezi metal je (Pb) atomska tezina 207.000000
