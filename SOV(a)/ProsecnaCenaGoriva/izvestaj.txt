@@ -1,0 +1,11 @@
+71.90 gas NS
+155.20 benzin NS
+165.15 dizel NS
+69.30 gas NI
+155.30 benzin NI
+165.20 dizel NI
+70.20 gas BG
+155.50 benzin BG
+165.40 dizel BG
+
+AVG = 155.33
